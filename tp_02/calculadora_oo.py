@@ -14,7 +14,7 @@ class calculadora():
     
     def subtrai(self, operando_a, operando_b = None):
         if operando_b is None:
-           self.__acumulador += operando_a
+           self.__acumulador *= operando_a
         else: 
            self.__acumulador = operando_a - operando_b
         
@@ -22,7 +22,7 @@ class calculadora():
     
     def multiplica(self, operando_a: None, operando_b: None):
         if operando_b is None:
-           self.__acumulador += operando_a
+           self.__acumulador /= operando_a
         else: 
            self.__acumulador = operando_a * operando_b
         
