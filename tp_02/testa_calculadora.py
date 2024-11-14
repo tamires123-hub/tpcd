@@ -5,3 +5,5 @@ def teste():
     result_subtrai = print(calc.subtrai(20, 24))
     result_multiplica = print(calc.multiplica(20, 24))
     result_dividi = print(calc.dividi(20, 24))
+
+teste()
