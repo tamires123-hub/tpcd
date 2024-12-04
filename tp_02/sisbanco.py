@@ -16,8 +16,9 @@ class Conta:
         return self.__saldo
     
 class Banco:
-    def __init__(self):
+    def __init__(self, taxa: float):
         self.__contas = []
+        self.__taxa = taxa
 
     def cadastrar(self, conta: Conta) -> None:
         self.__contas.append(conta)
@@ -50,3 +51,45 @@ class Banco:
             origem.debitar(valor)
             destino.creditar(valor)
 
+    def render_juros(self, numero: str) -> None:
+        conta = self.procurar(numero)
+
+        if isinstance(conta, ContaPoupanca):
+           conta.render_juros(self.__taxa)
+
+        else:
+            print(f"A conta {numero} não é uma conta poupança")
+
+    def get_taxa(self) -> float:
+        return self.__taxa
+
+    def set_taxa(self, taxa: float) -> None:
+        self.__taxa = taxa
+
+    def render_bonus(self, numero: str) -> None:
+        conta = self.procurar(numero)
+
+        if isinstance(conta, ContaEspecial):
+            conta.render_bonus()
+        else: 
+            print(f"A conta {numero} não é uma conta especial")
+
+class ContaPoupanca(Conta):
+    def __init__(self, numero: str):
+        super().__init__(numero)
+        
+    def render_juros(self, taxa: float) -> None:
+        self.creditar(self.get_saldo() * taxa)
+
+class ContaEspecial(Conta):
+    def __init__(self, numero: str):
+        super().__init__(numero)
+        self.__bonus = 0
+
+    def render_bonus(self) -> None:
+        super().creditar(self.__bonus)
+        self.__bonus = 0
+    
+    def creditar(self, valor: float) -> None:
+        self.__bonus += valor * 0.01
+        super().creditar(valor)
