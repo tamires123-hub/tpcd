@@ -1,4 +1,4 @@
-import conversores as c
+import tp_01.conversores as c
 
 def teste():
     celsius_fahrenheit = print(c.celsius_para_fahrenheit(30))
