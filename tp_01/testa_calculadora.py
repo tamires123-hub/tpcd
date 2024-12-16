@@ -3,7 +3,7 @@
 import calculadora as calc
 
 def testa():
-    resul_soma = calc.soma(24,20)
+    resul_soma = calc.soma(24)
     resul_subtracao = calc.subtracao(24, 20)
     resul_multiplicacao = calc.multiplicacao(24, 20)
     resul_divisao = calc.divisao(24, 20)

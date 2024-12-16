@@ -2,7 +2,7 @@
 #Decomposição procedural
 acumulador = 0.0
 
-def soma(operando_a, operando_b):
+def soma(operando_a, operando_b = None):
     global acumulador 
     if operando_b is None:
         acumulador += operando_a
@@ -10,7 +10,7 @@ def soma(operando_a, operando_b):
         acumulador = operando_a + operando_b
     return acumulador
 
-def subtracao(operando_a, operando_b):
+def subtracao(operando_a, operando_b = None):
     global acumulador 
     if operando_b is None:
         acumulador -= operando_a
@@ -18,7 +18,7 @@ def subtracao(operando_a, operando_b):
         acumulador = operando_a - operando_b
     return acumulador
 
-def multiplicacao(operando_a, operando_b):
+def multiplicacao(operando_a, operando_b = None):
     global acumulador
     if operando_b is None:
         acumulador *= operando_a
@@ -26,7 +26,7 @@ def multiplicacao(operando_a, operando_b):
         acumulador = operando_a * operando_b
     return acumulador
 
-def divisao(operando_a, operando_b):
+def divisao(operando_a, operando_b = None):
     global acumulador 
     try: 
         if operando_b is None:
