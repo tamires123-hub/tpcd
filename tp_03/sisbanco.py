@@ -1,4 +1,20 @@
-class Conta:
+from abc import ABC, abstractclassmethod
+class ContaAbstrata(ABC):
+    def __init__(self):
+        self.__numero__ = numero
+        self.__saldo__ = 0.0
+
+    def creditar():
+        self.__saldo += valor
+
+    @abstractclassmethod
+    def debitar(self, valor:float) -> None:
+        pass
+    
+    def get_numero(self) -> str:
+        return self.__numero
+    
+class Conta(ContaAbstrata):
     def __init__(self, numero: str):
         self.__numero__ = numero
         self.__saldo__ = 0.0
@@ -93,3 +109,17 @@ class ContaEspecial(Conta):
     def creditar(self, valor: float) -> None:
         self.__bonus += valor * 0.01
         super().creditar(valor)
+
+class ContaImposto(Conta):
+    def __init__(self, numero: str):
+        super().__init__(numero)
+        self.__taxa = 0.001
+
+    def debitar(self, valor: float) -> None:
+        self.__saldo = self.__saldo - (valor + (valor * self.__taxa))
+
+    def get_taxa(self)-> float:
+        return self.__taxa
+    
+    def set_taxa(self, taxa: float) -> None:
+        self.__taxa = taxa
