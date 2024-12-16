@@ -1,5 +1,5 @@
 import matematica
-from matematica.
+from matematica.estatistica import media
 
 def testa():
     print(matematica.soma(2,2))
