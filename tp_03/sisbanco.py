@@ -72,7 +72,6 @@ class Banco:
 
         if isinstance(conta, ContaPoupanca):
            conta.render_juros(self.__taxa)
-
         else:
             print(f"A conta {numero} não é uma conta poupança")
 
