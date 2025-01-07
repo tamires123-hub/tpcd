@@ -28,11 +28,8 @@ class TestContaPoupanca(unittest.TestCase):
 
 class TestContaEspecial(unittest.TestCase):
     def test_render_bonus(self):
-        
+        pass
        
-        
-
-
 if __name__ == "__main__":
     unittest.main()
         
