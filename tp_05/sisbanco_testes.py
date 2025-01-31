@@ -1,5 +1,5 @@
 import unittest
-from sisbanco import Conta, ContaPoupanca
+from sisbanco import Conta, ContaPoupanca, ContaEspecial, ContaImposto, Banco
 
 class TestConta(unittest.TestCase):
     def test_debitar(self):
@@ -28,8 +28,24 @@ class TestContaPoupanca(unittest.TestCase):
 
 class TestContaEspecial(unittest.TestCase):
     def test_render_bonus(self):
-        pass
-       
+        conta = ContaEspecial("234-T")
+        conta.creditar(20)
+        conta.render_bonus()
+        self.assertEqual(conta.get_saldo(), 20.2)
+
+class TestContaImposto(unittest.TestCase):
+    def test_debitar(self):
+        conta = ContaImposto("964-G")
+        conta.debitar(40)
+        self.assertEqual(conta.get_saldo(), -40.04)
+
+class TestBanco(unittest.TestCase):
+    def test_cadastrar(self):
+        conta = Conta("438-I")
+        banco = Banco()
+        banco.cadastrar(conta)
+        self.assertEqual(conta.get_numero(), "438-I")
+
 if __name__ == "__main__":
     unittest.main()
         
