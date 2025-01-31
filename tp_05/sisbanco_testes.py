@@ -29,6 +29,7 @@ class TestContaPoupanca(unittest.TestCase):
 class TestContaEspecial(unittest.TestCase):
     def test_render_bonus(self):
         conta = ContaEspecial("234-T")
+        conta.get_saldo()
         conta.creditar(20)
         conta.render_bonus()
         self.assertEqual(conta.get_saldo(), 20.2)
@@ -41,11 +42,36 @@ class TestContaImposto(unittest.TestCase):
 
 class TestBanco(unittest.TestCase):
     def test_cadastrar(self):
+        conta = Conta("432-I")
+        banco = Banco()
+        banco.cadastrar(conta)
+        self.assertEqual(conta.get_numero(), "432-I")
+
+    def test_procurar(self):
         conta = Conta("438-I")
         banco = Banco()
         banco.cadastrar(conta)
+        banco.procurar(conta)
         self.assertEqual(conta.get_numero(), "438-I")
+
+    def test_saldo(self):
+        conta = Conta("438-I")
+        banco = Banco()
+        banco.saldo(conta)
+        self.assertEqual(conta.get_saldo(), 0.0)
+
+    def test_transferir(self):
+        origem = Conta("076-U")
+        destino = Conta("867-G")
+        banco = Banco()
+        banco.cadastrar(origem)
+        banco.cadastrar(destino)
+        banco.creditar(origem, 40)
+        banco.transferir(origem, destino, 5.0)
+        self.assertEqual(banco.saldo("076-U"), origem.get_saldo())
+        self.assertEqual(banco.saldo("867-G"), destino.get_saldo())
 
 if __name__ == "__main__":
     unittest.main()
+
         
