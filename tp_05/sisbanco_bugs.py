@@ -121,3 +121,4 @@ class Banco:
       conta = self.procurar(numero)
       if conta is not None and isinstance(conta, ContaEspecial):
          conta.render_bonus()
+
