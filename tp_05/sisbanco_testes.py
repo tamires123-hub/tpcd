@@ -70,6 +70,40 @@ class TestBanco(unittest.TestCase):
         banco.transferir(origem, destino, 5.0)
         self.assertEqual(banco.saldo("076-U"), origem.get_saldo())
         self.assertEqual(banco.saldo("867-G"), destino.get_saldo())
+    
+    def test_get_taxa_poupanca(self):
+        banco = Banco()
+        self.assertEqual(banco.get_taxa_poupanca(), 0.001)
+    
+    def test_set_taxa_poupanca(self):
+        banco = Banco()
+        banco.set_taxa_poupanca(0.07)
+        self.assertEqual(banco.get_taxa_poupanca(), 0.07)
+
+    def test_get_taxa_imposto(self):
+        banco = Banco()
+        self.assertEqual(banco.get_taxa_imposto(), 0.001)
+    
+    def test_set_taxa_imposto(self):
+        banco = Banco()
+        banco.set_taxa_imposto(0.003)
+        self.assertEqual(banco.get_taxa_imposto(), 0.003)
+    
+    def test_render_juros(self):
+        conta = ContaPoupanca("638-M")
+        banco = Banco()
+        banco.cadastrar(conta)
+        banco.creditar("638-M", 10)
+        banco.render_juros("638-M")
+        self.assertEqual(conta.get_saldo(), 10.01)
+
+    def test_render_bonus(self):
+        conta = ContaEspecial("832-N")
+        banco = Banco()
+        banco.cadastrar(conta)
+        banco.creditar("832-N", 12)
+        banco.render_bonus("832-N")
+        self.assertEqual(conta.get_saldo(), 12.12)
 
 if __name__ == "__main__":
     unittest.main()
