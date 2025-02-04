@@ -16,7 +16,7 @@ def terminal():
       print("[7] Alterar Taxa_Juros")      
       print("[8] Alterar Taxa_Imposto")
       print("[9] Sair")
-      opcao = input("Digite:")
+      opcao = int(input("Digite:"))
       
       if opcao == 0:
          tp_conta = input("Qual o tipo de conta você deseja criar? S - Simples  | P - Poupanca | E - Especial | I - Imposto")

@@ -16,7 +16,7 @@ class ContaAbstrata(ABC):
       return self.__numero 
    
    def get_saldo(self) -> float:
-      return self.__numero
+      return self._saldo
 
 
 class Conta(ContaAbstrata):
